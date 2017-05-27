@@ -1,31 +1,70 @@
 package com.mobile.rapidpay.rapidpaymobile;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.zxing.Result;
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+public class MainActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+
+    private Button scanBtn;
+    private ZXingScannerView mScannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        ((Button) findViewById(R.id.btnScanBarcode)).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                /*Intent myIntent = new Intent(MainActivity.this, BillActivity.class);
+                startActivity(myIntent);*/
+
+                //bkz:https://www.youtube.com/watch?v=JxwKfVh0K6I
+                mScannerView = new ZXingScannerView(MainActivity.this);
+                setContentView(mScannerView);
+                mScannerView.setResultHandler(MainActivity.this);
+                mScannerView.startCamera();
             }
         });
+    }
+
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        mScannerView.stopCamera();
+    }
+
+    @Override
+    public void handleResult(Result result)
+    {
+        /*Log.w("handleResult", result.getText());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Scan result");
+        builder.setMessage(result.getText());
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();*/
+
+        Intent billIntent = new Intent(MainActivity.this, BillActivity.class);
+        startActivity(billIntent);
+
+        //barcode okumaya devam etmesi icin
+        //mScannerView.resumeCameraPreview(this);
+
     }
 
     @Override
