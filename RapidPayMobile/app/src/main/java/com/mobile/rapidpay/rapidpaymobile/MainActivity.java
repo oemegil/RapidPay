@@ -1,31 +1,26 @@
 package com.mobile.rapidpay.rapidpaymobile;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
 import com.google.zxing.Result;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class MainActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
-
-    private Button scanBtn;
+public class MainActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler  {
     private ZXingScannerView mScannerView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ((Button) findViewById(R.id.btnScanBarcode)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,32 +33,16 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                 mScannerView.setResultHandler(MainActivity.this);
                 mScannerView.startCamera();
             }
+
+
         });
-    }
+        FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.btnCredit);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CreditCardList.class));
 
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-        mScannerView.stopCamera();
-    }
-
-    @Override
-    public void handleResult(Result result)
-    {
-        /*Log.w("handleResult", result.getText());
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan result");
-        builder.setMessage(result.getText());
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();*/
-
-        Intent billIntent = new Intent(MainActivity.this, BillActivity.class);
-        startActivity(billIntent);
-
-        //barcode okumaya devam etmesi icin
-        //mScannerView.resumeCameraPreview(this);
+            }
+        });
 
     }
 
@@ -87,5 +66,29 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void handleResult(Result result) {
+/*Log.w("handleResult", result.getText());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Scan result");
+        builder.setMessage(result.getText());
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();*/
+
+        Intent billIntent = new Intent(MainActivity.this, BillActivity.class);
+        startActivity(billIntent);
+
+        //barcode okumaya devam etmesi icin
+        //mScannerView.resumeCameraPreview(this);
+    }
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        if(mScannerView!=null){
+            mScannerView.stopCamera();
+        }
     }
 }
