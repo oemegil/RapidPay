@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         //barcode okumaya devam etmesi icin
         //mScannerView.resumeCameraPreview(this);
     }
+
     @Override
     protected void onPause()
     {

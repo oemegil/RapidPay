@@ -39,4 +39,11 @@ public class BillActivity extends AppCompatActivity{
         editTextAmount = (EditText)findViewById(R.id.editTextAmount);
         /*editTextAmount.addTextChangedListener(new MoneyTextWatcher(editTextAmount));*/
     }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+    }
+
 }

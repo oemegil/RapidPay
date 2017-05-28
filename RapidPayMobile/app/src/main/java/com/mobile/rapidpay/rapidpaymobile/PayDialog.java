@@ -1,11 +1,13 @@
 package com.mobile.rapidpay.rapidpaymobile;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class PayDialog  extends Dialog implements
         android.view.View.OnClickListener {
@@ -35,6 +37,8 @@ public class PayDialog  extends Dialog implements
         switch (v.getId()) {
             case R.id.btn_yes:
                 c.finish();
+                Toast.makeText(getContext(), "Paying process is successful. Remain amount 15.5 TL",
+                        Toast.LENGTH_LONG).show();
                 break;
             case R.id.btn_no:
                 dismiss();
