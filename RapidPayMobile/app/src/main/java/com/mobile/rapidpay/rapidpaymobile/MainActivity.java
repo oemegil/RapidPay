@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
 
         });
-        FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.btnCredit);
+        Button myFab = (Button) findViewById(R.id.btnCredit);
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, CreditCardList.class));

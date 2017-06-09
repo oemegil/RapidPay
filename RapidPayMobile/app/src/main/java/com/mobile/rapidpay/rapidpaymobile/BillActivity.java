@@ -1,6 +1,7 @@
 package com.mobile.rapidpay.rapidpaymobile;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class BillActivity extends AppCompatActivity{
@@ -28,11 +30,11 @@ public class BillActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if (v.getId() == R.id.btnPay) {
-
+                    Toast.makeText(BillActivity.this, "Paying Process is successfull.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(BillActivity.this, MainActivity.class));
                 }
             }
         });
-
         mImageView = (ImageView) findViewById(R.id.billImageView);
         mImageView.setImageResource(R.mipmap.billexample);
 

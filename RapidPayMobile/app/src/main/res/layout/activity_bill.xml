@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@android:color/holo_orange_light"
     tools:context="com.mobile.rapidpay.rapidpaymobile.BillActivity">
 
 
@@ -24,17 +25,19 @@
 
         <TextView
             android:layout_weight="0.5"
+            android:textColor="#bbff9c"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Kalan Tutar"/>
+            android:text="Remaining Amount"/>
 
         <TextView
             android:layout_weight="0.5"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:textColor="#bbff9c"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Toplam Tutar"/>
+            android:text="Total Amount"/>
 
     </LinearLayout>
 
@@ -48,6 +51,7 @@
         <TextView
             android:layout_weight="0.5"
             android:layout_width="wrap_content"
+            android:textColor="#bbff9c"
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="15.5 TL"/>
@@ -56,6 +60,7 @@
             android:layout_weight="0.5"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:textColor="#bbff9c"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="22.0 TL"/>
 
@@ -75,13 +80,16 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Ödenecek Tutar"/>
+            android:textColor="#bbff9c"
+            android:text="Payment"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/editTextAmount"
+            android:textColor="#bbff9c"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:inputType="numberDecimal"
             android:layout_weight="0.5" />
 
 
@@ -90,8 +98,9 @@
     <Button android:id="@+id/btnPay"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="#bbff9c"
         android:layout_centerHorizontal="true"
-        android:text="Öde" />
+        android:text="Pay" />
 
 
 </LinearLayout>
